@@ -1,5 +1,5 @@
-/*12. Характеристикой строки матрицы назовём сумму её отрицательных четных элементов.
-Расположить строки в соответствии с убыванием характеристик. (Пересыпкина)*/
+п»ї/*12. РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРѕР№ СЃС‚СЂРѕРєРё РјР°С‚СЂРёС†С‹ РЅР°Р·РѕРІС‘Рј СЃСѓРјРјСѓ РµС‘ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹С… С‡РµС‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ.
+Р Р°СЃРїРѕР»РѕР¶РёС‚СЊ СЃС‚СЂРѕРєРё РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ СѓР±С‹РІР°РЅРёРµРј С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє. (РџРµСЂРµСЃС‹РїРєРёРЅР°)*/
 
 #include "stdafx.h"
 #include <fstream>
@@ -12,7 +12,7 @@
 #include <string>
 using namespace std;
 
-// Главное меню
+// Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ
 int Menu()
 {
 	cout << "---------------------------------------\n";
@@ -35,9 +35,9 @@ int Menu()
 
 int **CreateMatrix(int nrow, int ncol)
 {
-	int **a = new int *[nrow]; // выделение памяти под матрицу
+	int **a = new int *[nrow]; // РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РјР°С‚СЂРёС†Сѓ
 	for (int i = 0; i < nrow; i++)
-		a[i] = new int[ncol]; // выделение памяти
+		a[i] = new int[ncol]; // РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
 	for (int i = 0; i < nrow; i++)
 		for (int j = 0; j < ncol; j++)
 			a[i][j] = 0;
@@ -55,7 +55,7 @@ int main()
 		string str;
 		cout << "Enter file name:" << endl;
 		cin >> str;
-		// Открытие введенного пользователем файла
+		// РћС‚РєСЂС‹С‚РёРµ РІРІРµРґРµРЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј С„Р°Р№Р»Р°
 		ifstream file(str);
 		if (!file.good())
 		{
@@ -66,7 +66,7 @@ int main()
 		}
 		else
 		{
-			// Инициализация матрицы 
+			// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РјР°С‚СЂРёС†С‹ 
 			file >> nrow;
 			file >> ncol;
 			Matrix = CreateMatrix(nrow, ncol);
@@ -109,7 +109,7 @@ int main()
 
 		Matrix = CreateMatrix(nrow, ncol);
 		cout << "Enter matrix" << endl;
-		for (int i = 0; i < nrow; i++) // ввод матрицы
+		for (int i = 0; i < nrow; i++) // РІРІРѕРґ РјР°С‚СЂРёС†С‹
 			for (int j = 0; j < ncol; j++) cin >> Matrix[i][j];
 	}
 	break;
@@ -117,14 +117,14 @@ int main()
 	}
 	
 
-	pair<long, int*> *HelpMas = new pair<long, int*>[nrow]; //двумерный массив: сумма элементов в строке-указатель на строку
+	pair<long, int*> *HelpMas = new pair<long, int*>[nrow]; //РґРІСѓРјРµСЂРЅС‹Р№ РјР°СЃСЃРёРІ: СЃСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РІ СЃС‚СЂРѕРєРµ-СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ
 	long sum;
 
 	for (int i = 0; i < nrow; i++)
 	{
 		sum = 0;
 		for (int j = 0; j < ncol; j++)
-			if ((Matrix[i][j]<0) && ((Matrix[i][j] % 2) == 0)) //проверка условий
+			if ((Matrix[i][j]<0) && ((Matrix[i][j] % 2) == 0)) //РїСЂРѕРІРµСЂРєР° СѓСЃР»РѕРІРёР№
 				sum += Matrix[i][j];
 		HelpMas[i] = make_pair(sum, Matrix[i]);
 	}
@@ -132,7 +132,7 @@ int main()
 	sort(HelpMas, HelpMas + nrow, greater<>());
 	cout << "Result" << endl;
 	int *str;
-	for (int i = 0; i < nrow; i++) // вывод упорядоченной матрицы	
+	for (int i = 0; i < nrow; i++) // РІС‹РІРѕРґ СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹	
 	{
 		str = HelpMas[i].second;
 		for (int j = 0; j < ncol; j++)
